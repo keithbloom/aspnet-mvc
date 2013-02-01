@@ -1,0 +1,47 @@
+﻿@model MvcExamples.ViewModels.ContactListViewModel
+
+@{
+    ViewBag.Title = "Model state errors";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+
+
+@if (!Model.Contacts.Any())
+{
+    <p>The list is empty</p>
+}
+else
+{
+    @Html.Partial("_Contacts", Model)
+}
+
+@section scripts
+{
+    <script>
+        $(function() {
+
+            /* Wrap this up in a fucntion as well be calling is twice
+               once when the page loads and then when the post suceeds */
+            
+            var setUI = function() {
+                $('.form-ajax').on("submit", function(event) {
+                    event.preventDefault();
+
+                    var $form = $(this), url = $form.attr('action');
+
+                    /* Send the data using post */
+                    var posting = $.post(url, $form.serialize());
+
+                    /* Put the results in a div */
+                    posting.done(function(data) {
+                        $(".form-ajax").empty().append(data);
+                        setUI();
+                    });
+                });
+            };
+
+            setUI();
+        });
+    </script>    
+}

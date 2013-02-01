@@ -1,0 +1,25 @@
+﻿@model MvcExamples.ViewModels.ContactListViewModel
+
+@using (Html.BeginRouteForm("AjaxPartialSave",FormMethod.Post,new {@class = "form-ajax"}))
+{
+    <table>
+        <tr>
+            <td>Id</td>
+            <th>Name</th>
+            <th>Email</th>
+            <td>Delete</td>
+        </tr>
+        @for (var i = 0; i < Model.Contacts.Count; i++)
+        {
+            @Html.HiddenFor(x => Model.Contacts[i].Id)
+            <tr>
+                <td>@Html.DisplayFor(x => Model.Contacts[i].Id)</td>
+                <td>@Html.EditorFor(x => Model.Contacts[i].Name)</td>
+                <td>@Html.EditorFor(x => Model.Contacts[i].Email)</td>
+                <td>@Html.CheckBoxFor(x => Model.Contacts[i].DeleteMe)</td>
+            </tr>
+        }
+    </table>
+    
+    <input type="submit" title="Save"/>
+}
