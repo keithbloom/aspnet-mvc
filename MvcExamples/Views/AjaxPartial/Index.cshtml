@@ -24,7 +24,21 @@ else
             /* Wrap this up in a fucntion as well be calling is twice
                once when the page loads and then when the post suceeds */
             
-            var setUI = function() {
+            var setUI = function () {
+
+                $(".delete-me").on("click", function () {
+                    var it = $(this).parent().parent();
+                    if ($(this).attr('checked')) {
+                        it.css("background", "yellow");
+                    } else {
+                        it.css("background", "white");
+                    }
+                    
+                });
+
+
+
+
                 $('.form-ajax').on("submit", function(event) {
                     event.preventDefault();
 

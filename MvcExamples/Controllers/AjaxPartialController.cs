@@ -23,8 +23,11 @@ namespace MvcExamples.Controllers
                 if (Request.IsAjaxRequest())
                 {
                     ModelState.Clear();
+
                     return PartialView("_Contacts", GetViewModel());
                 }
+                
+                return RedirectToRoute("AjaxPartial");
             }
 
             return PartialView("_Contacts", viewModel);

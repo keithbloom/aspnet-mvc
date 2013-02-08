@@ -16,7 +16,7 @@
                 <td>@Html.DisplayFor(x => Model.Contacts[i].Id)</td>
                 <td>@Html.EditorFor(x => Model.Contacts[i].Name)</td>
                 <td>@Html.EditorFor(x => Model.Contacts[i].Email)</td>
-                <td>@Html.CheckBoxFor(x => Model.Contacts[i].DeleteMe)</td>
+                <td>@Html.CheckBoxFor(x => Model.Contacts[i].DeleteMe, new {@class = "delete-me"})</td>
             </tr>
         }
     </table>
